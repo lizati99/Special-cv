@@ -631,6 +631,8 @@ nav{
     position: relative;
 }
 .skill-head{
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
 }
 .skill-head h4{
@@ -638,9 +640,6 @@ nav{
     font-weight: normal;
 }
 .skill-head .pc{
-    position: absolute;
-    right: 0;
-    top: 0;
     font-size: 14px;
     font-weight: normal;
     color: var(--color-secondary);

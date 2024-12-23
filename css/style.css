@@ -24,11 +24,9 @@
     color: var(--color-text);
     outline: none;
 }
-
 body{
     background-color: var(--color-bg);
 }
-
 .container{
     max-width: 90%;
     margin: auto;
@@ -181,20 +179,20 @@ nav{
         z-index: 999;
         animation: moveLinks 1s 1;
     }
-    @keyframes moveLinks {
-        0%{width: 0%;}
-        100%{width: 30%;}
-    }
     .links li{
         margin: 0;
         margin-bottom: 20px;
         padding-left: 30px;
         animation: linksAnime 2s 1;
-    }
-    @keyframes linksAnime {
-        0%{transform: translateX(-100%);}
-        100%{transform: translateX(0);}
-    }
+    } 
+}
+@keyframes moveLinks {
+    0%{width: 0%;}
+    100%{max-width: 80%;}
+}
+@keyframes linksAnime {
+    0%{transform: translateX(-100%);}
+    100%{transform: translateX(0);}
 }
 /* End Header Area */
 /* Start landing Page */
@@ -207,7 +205,7 @@ nav{
     align-items: center;
     position: relative;
     backdrop-filter: blur(3px);
-
+    overflow: hidden !important;
 }
 .landing-img{
     position: absolute;
@@ -220,7 +218,7 @@ nav{
     opacity: .2;
 }
 /* .intro-text{
-   
+
 } */
 .intro-text h1{
     font-size: 50px;
@@ -229,15 +227,6 @@ nav{
     text-align: center;
     font-size: 30px;
 }
-/* Start meduim and small device in media query  */
-@media screen and (max-width:991px) {
-    .intro-text h1{font-size:45px;}
-    .intro-text p{
-        text-align: center;
-        font-size: 20px;
-    }
-}
-/* End meduim and small device in media query  */
 .intro-text p span{
     color: var(--color-secondary);
 }
@@ -293,6 +282,7 @@ nav{
     font-size: 22px;
     cursor: pointer;
     margin-top: 10px;
+    transition: .5s;
 }
 .social li i:hover{
     color: var(--color-secondary);
@@ -380,6 +370,7 @@ nav{
     top: 30px;
     right: 40px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .title{
@@ -676,7 +667,7 @@ nav{
 /* Start Portofolio Content */
 .port-overlay{
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -764,7 +755,7 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100%/3 - 40px);
+    width: calc(100% - 40px);
     height: calc(64px + 20vh);
     margin: 20px auto;
     background-color: var(--color-overlay);
@@ -853,8 +844,8 @@ nav{
 }
 .info h4{
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: var(--color-secondary);
 
 }
@@ -930,13 +921,14 @@ form .input-group{
 .input-group input{
     width: calc(50% - 10px);
 }
+form .button-group{
+    text-align: end;
+}
 .sendMessage{
     all: unset;
     background-color: var(--color-secondary);
     padding: 10px;
     opacity: .5;
-    float: right;
-    clear: both;
     cursor: pointer;
     border-radius: 2px;
     transition: .5s;
@@ -948,8 +940,188 @@ form textarea:hover,
     opacity: 1;
 }
 /* End Contact Content */
+
+/* Start Media Query */
+/* Start meduim and small device in media query  */
+@media screen and (max-width:1199px){
+    .intro-text h1{font-size:45px;}
+    .intro-text p{
+        text-align: center;
+        font-size: 25px;
+    }
+}
+@media screen and (max-width:991px) {
+    .intro-text h1{font-size:40px;}
+    .intro-text p{
+        text-align: center;
+        font-size: 20px;
+    }
+    .work{
+        width: calc(100%/2 - 40px);
+    }
+    .services-content .service{
+        width: calc(50% - 30px);
+    }
+    .contact-content{
+        display: block;
+        height: auto;
+    }
+    .contact-content .start{
+        width: 100%;
+        height: auto;
+    }
+    .start .contact-info {
+        position: relative;
+        transform: none;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: auto; 
+    }
+    .info{
+        display: flex;
+        height: 120px !important;   
+        justify-content: center; 
+        align-items: center;
+        padding: 0 !important;
+    }
+    .info .info-icon{
+        width: 30%;
+    }
+    .info div{
+        width: 70%;
+    }
+    .info h4,.info p{
+        text-align: start;
+    }
+    .contact-content .end{
+        width: 100%;
+        height: 75vh;
+    }
+    .end form{
+        position: relative;
+        transform: none;
+        width: 70%;
+        margin: auto;
+        right: unset;
+        top: unset;
+        padding: 50px 0;
+    }
+    form .button-group{
+        text-align: end;
+    }
+    form .sendMessage{
+        float: unset;
+    }
+}
+@media screen and (max-width:767px) {
+    .intro-text h1{font-size:30px;}
+    .intro-text p{
+        text-align: center;
+        font-size: 16px;
+    }
+    .content-about{
+        display: block;
+    }
+    .content-about .left{
+        height: 40vh;
+        width: 100%;
+        background-position:50% 30%;
+    }
+    .content-about .right{
+        padding: 10px;
+        width: 100%;
+    }
+    .right .answer{
+        text-align: justify;
+        font-size: 13px;
+    }
+    .right h1{
+        font-size: 16px;
+        text-align: center;
+    }
+    .right .question{
+        text-align: center;
+    }
+    .right .question{
+        font-size: 12px;
+    }
+    .services-box{
+        padding: 25px 0;
+    }
+    .services-content .service{
+        width: 100%;
+        padding: 20px;
+    }
+    .resume-content{
+        display: block;
+        margin: 60px auto;
+    }
+    .education-title{
+        font-size: 25px;
+        top: -25px;
+    }
+    .resume-content .education,
+    .resume-content .experience{
+        width: 100%;
+        padding: 40px 0;
+        padding-left: 30px;    
+    }
+    .education::after,
+    .experience::after{
+        left: 14px;
+    }
+    .education-item{
+        padding: 15px;
+        margin-bottom: 35px;
+    }
+    .education-item .year{
+        top: -33px;
+        left: -40px;
+    }
+    .education-item h3{
+        font-size: 15px;
+    }
+    .work{
+        width: calc(100% - 40px);
+    }
+    .contact-info .info{
+        height: 90px !important;
+    }
+    .info-icon i{
+        font-size: 30px;
+    }
+}
+@media (max-width:575px){
+    .container{
+        max-width: 95%;
+        padding: 0 12px;
+    }
+    .links{
+        width: 80%;
+        animation: moveLinks 1s 1;
+    }
+    .intro-text h1{font-size:25px;}
+    .intro-text p{
+        text-align: center;
+        font-size: 14px;
+    }
+    .title h1{font-size: 35px !important;}
+    .title p{font-size: 12px !important;}
+    .skills{
+        display: block;
+        margin-top: 60px;
+        margin-bottom: 0;
+    }
+    .skill{
+        width: 100%;
+    }
+}
+/* End meduim and small device in media query  */
+/* End Media Query */
+
 /* Hide sections */
-.about,.resume,.portofolio,.contact{
+.about,.resume,.portofolio{
     display: none;
 }
 /* Class Active */
@@ -959,4 +1131,11 @@ form textarea:hover,
 /* Class Flex */
 .flex{
     display: flex !important;
+}
+/* Class Errors */
+.errors{
+    color: darkred;
+    transition: .5s;
+    font-family: 'Poppins';
+    text-align: center;
 }

@@ -342,50 +342,61 @@
         <div class="close-box">
             <img class="close-icon" src="img/img-core/closing.svg" height="20">
         </div>
-        <div class="container">
-            <div class="title">
-                <p>Feel free to contact me anytimes</p>
-                <h1><span>Get</span> in Touch</h1>
-            </div>
-            <div class="contact-content">
-                <div class="start">
+        <div class="title">
+            <p>Feel free to contact me anytimes</p>
+            <h1><span>Get</span> in Touch</h1>
+        </div>
+        <div class="contact-content">
+            <div class="start">
+                <div class="container">
                     <div class="contact-info">
                         <div class="info">
                             <div class="info-icon"><i class="fa-solid fa-signature"></i></div>
-                            <h4>NAME</h4>
-                            <p class="text">Lizati Mohammed</p>
+                            <div>
+                                <h4>NAME</h4>
+                                <p class="text">Lizati Mohammed</p>
+                            </div>
                         </div>
                         <div class="info">
                             <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-                            <h4>LOCATION</h4>
-                            <p class="text">hay benazzi rue 28 <p>nr 26, oujda</p></p>
+                            <div>
+                                <h4>LOCATION</h4>
+                                <p class="text">hay benazzi rue 28 <p>nr 26, oujda</p></p>
+                            </div>
                         </div>
                         <div class="info">
                             <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-                            <h4>EMAIL</h4>
-                            <p class="text">medliz99@gmail.com</p>
+                            <div>
+                                <h4>EMAIL</h4>
+                                <p class="text">medliz99@gmail.com</p>
+                            </div>
                         </div>
                         <div class="info">
                             <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
-                            <h4>CALL ME</h4>
-                            <p class="text">0695283656</p>
+                            <div>
+                                <h4>CALL ME</h4>
+                                <p class="text">0695283656</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="end">
-                    <div class="container">
-                        <div class="nvMessage active"><a href="#" >New Message</a></div>
-                        <form action="" method="post">
-                            <h1>Contact <span>Us</span></h1>
-                            <div class="input-group">
-                                <input type="text" placeholder="Enter your Name">
-                                <input type="email" placeholder="Enter a valid email address">
-                            </div>
-                            <input type="text" placeholder="Enter your Subject">
-                            <textarea cols="30" rows="10"></textarea>
+            </div>
+            <div class="end">
+                <div class="container">
+                    <div class="nvMessage active"><a href="#" >New Message</a></div>
+                    <form action="" method="get">
+                        <h1>Contact <span>Us</span></h1>
+                        <div class="input-group">
+                            <input type="text" id="name" placeholder="Enter your Name">
+                            <input type="text" id="email" placeholder="Enter a valid email address">
+                        </div>
+                        <input type="text" id="subject" placeholder="Enter your Subject">
+                        <textarea id="text" cols="30" rows="10"></textarea>
+                        <p class="errors"></p>
+                        <div class="button-group">
                             <button type="submit" class="sendMessage">Send <i class="fa-solid fa-paper-plane"></i></button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

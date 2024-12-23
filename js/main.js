@@ -11,8 +11,44 @@ function setProp(key,value) {
         value
         );
 }
+function usernameValidate() {
+    if(/^[a-z0-9_\.]{6,}$/.test(username.value)){
+        username.style.border="solid 1px green";
+    }else{
+        username.style.border="solid 1px red";
+    }
+}
+function emailValidate() { 
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)){
+        email.style.border="solid 1px green";
+    }
+    else{
+        email.style.border="solid 1px red";
+    }
+}
+function subjectValidate() {
+    if(/^[a-zA-Z0-9_\. ]{1,}$/.test(subject.value)){
+        subject.style.border="solid 1px green";
+    }else{
+        subject.style.border="solid 1px red";
+    }
+}
+function msgValidate() {
+    if(/^[a-zA-Z0-9_\. /()]{1,}$/.test(text.value)){
+        text.style.border="solid 1px green";
+    }else{
+        text.style.border="solid 1px red";
+    }
+}
+function fieldValidate(field,regex) {
+    field.addEventListener('keyup',item=>{
+        regex.test(field.value) 
+        ? field.style.border="solid 1px green"
+        : field.style.border="solid 1px red";
+    });
+}
 /* End functions */
-/* Start Overlay Effect */
+/* Start Overlay Effect And Show Boxs*/
 const links=getElement(".links");
 const overlayEffect=getElement(".overlay-effect");
 const box=getAllElement(".box");
@@ -23,6 +59,7 @@ links.addEventListener('click',link=>{
     if(i!==-1){
         overlayEffect.style.animation="openOverlayAnimee 1s 1";
         getElement(`.${arraySelectors[i]}`).classList.add("active");
+        document.body.style.overflowY="auto";
     }
 });
 box.forEach(b=>{
@@ -30,10 +67,11 @@ box.forEach(b=>{
         if(item.target.className==="close-icon"){
             overlayEffect.style.animation="closeOverlayAnimee 1s 1";
             b.classList.remove("active");
+            document.body.style.overflow="hidden";
         }
     });
 });
-/* End Overlay Effect */
+/* End Overlay Effect And Show Boxs*/
 /* Start toggle menu */
 const toggleMenu=getElement(".toggle-menu");
 const closeMenu=getElement(".close-link");
@@ -128,13 +166,13 @@ popup.addEventListener('click',item=>{
 });
 //move down image
 popupImg.addEventListener("mouseover",eo=>{
-    eo.target.style.animation="moveDownOver 6s 1";
+    eo.target.style.animation="moveDownOver 13s 1";
     setTimeout(() => {
         eo.target.style.backgroundPosition="bottom";
     }, 4000);
 });
 popupImg.addEventListener("mouseout",eo=>{
-    eo.target.style.animation="moveDownOut 3s 1";
+    eo.target.style.animation="moveDownOut 5s 1";
     setTimeout(() => {
         eo.target.style.backgroundPosition="top";
     }, 2000);
@@ -144,8 +182,82 @@ popupImg.addEventListener("mouseout",eo=>{
 const nvMsg=getElement(".nvMessage a");
 const formContact=getElement("form");
 nvMsg.addEventListener('click',btn=>{
+    btn.preventDefault();
     btn.target.parentElement.classList.remove("active");
     formContact.classList.add("active");
-
 });
 /* End Contact*/
+/* Start Form Validate */
+
+const sendMsg=getElement(".sendMessage");
+let username=getElement("#name");
+let email=getElement("#email");
+let subject=getElement("#subject");
+let text=getElement("#text");
+let err=getElement(".errors");
+const fieldsArray=[username,email,subject,text];
+const regexArray=[
+    /^[a-z0-9_\.]{6,}$/,
+    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    /^[a-zA-Z0-9_\. ]{1,}$/,
+    /^[a-zA-Z0-9_\. /()]{1,}$/
+];
+// for (const index in fieldsArray) {
+//     if (fieldsArray.hasOwnProperty.call(fieldsArray, index)) {
+//         fieldValidate(fieldsArray[index],regexArray[index]);
+//     }
+// }
+
+formContact.addEventListener('submit', eo => {
+    let messages=[];
+    if(username.value==='' || email.value==='' || subject.value==='' || text.value===''){
+        messages.push("All fields is required.");
+    }else{
+        for (const i in fieldsArray) {
+            fieldsArray[i].style.border="1px solid green";
+        }
+        if(/^[a-z0-9_\.]{6,}$/.test(username.value)==false){
+            username.style.border="1px solid red";
+            messages.push(username);
+        }
+        if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)==false){
+            email.style.border="1px solid red";
+            messages.push(email);
+        }
+        if(/^[a-zA-Z0-9_\. ]{1,}$/.test(subject.value)==false){
+            subject.style.border="1px solid red";
+            messages.push(subject);
+        }
+        if(/^[a-zA-Z0-9_\. /()]{1,}$/.test(text.value)==false){
+            text.style.border="1px solid red";
+            messages.push(text);
+        }
+    }
+    if(messages.length>0){
+        eo.preventDefault();
+    }else{
+        formAjax(username.value,email.value,subject.value,text.value);
+    }
+});
+/* End Form Validate */
+// /* Start Ajax in form */
+// function formAjax(un,e,s,m) {
+//     // Creating the XMLHttpRequest object
+//     var request = new XMLHttpRequest();
+//     const urlData=`name=${un}&email=${e}&subject=${s}&message`;
+//     // Instantiating the request object
+//     request.open("POST", "message.php?fname=John&lname=Clark");
+
+//     // Defining event listener for readystatechange event
+//     request.onreadystatechange = function() {
+//         // Check if the request is compete and was successful
+//         if(this.readyState === 4 && this.status === 200) {
+//             // Inserting the response from server into an HTML element
+//             document.getElementById("result").innerHTML = this.responseText;
+//         }
+//     };
+
+//     // Sending the request to the server
+//     request.send();
+// }
+/* End Ajax in form */

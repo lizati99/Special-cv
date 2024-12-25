@@ -797,6 +797,15 @@ nav{
 .work-body span{
     color: var(--color-secondary);
 }
+
+.work-role {
+    display: flex;
+    justify-content: end;
+}
+.work-role small{
+    font-size: 12px;
+    opacity: .3;
+}
 /* End Portofolio Content */
 /* Start Contact Content */
 .contact-content{

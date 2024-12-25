@@ -52,7 +52,7 @@ function fieldValidate(field,regex) {
 const links=getElement(".links");
 const overlayEffect=getElement(".overlay-effect");
 const box=getAllElement(".box");
-links.addEventListener('click',link=>{
+links.addEventListener('click', link =>{
     const arrayLinks=["about-link active","resume-link","portofolio-link","contact-link"];
     const arraySelectors=["about","resume","portofolio","contact"];
     let i=arrayLinks.indexOf(link.target.className);

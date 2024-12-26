@@ -106,6 +106,7 @@ const settings=getElement(".settings");
 const logoIcon=getElement(".logo img");
 const colorList=getAllElement(".settings li");
 const shortcut=getElement("[rel=icon]");
+const logoLink=getElement(".logo-link img");
 if(localStorage.getItem("color")){
     setProp(
         "--color-secondary",
@@ -117,6 +118,9 @@ if(localStorage.getItem("logo")){
 }
 if(localStorage.getItem("shortcut")){
     shortcut.href=localStorage.getItem("shortcut");
+}
+if(localStorage.getItem("logoLink")){
+    logoLink.src=localStorage.getItem("logoLink");
 }
 toggle.addEventListener('click',tog=>{
     settings.classList.toggle("active");
@@ -134,16 +138,23 @@ settings.addEventListener('click',option=>{
     );
     //change shortcut
     shortcut.href=`img/img-core/icons/icon_${option.target.dataset.logo}.png`;
+    logoLink.src=`img/img-core/icons/icon_${option.target.dataset.logo}.png`;
     // stock changing in localstorage
     localStorage.setItem(
         "color",
-        option.target.dataset.color);
+        option.target.dataset.color
+    );
+    console.log(logoLink);
     localStorage.setItem(
         "logo",
         `img/img-core/logo_${option.target.dataset.logo}.png`
     );
     localStorage.setItem(
         "shortcut",
+        `img/img-core/icons/icon_${option.target.dataset.logo}.png`
+    );
+    localStorage.setItem(
+        "logoLink",
         `img/img-core/icons/icon_${option.target.dataset.logo}.png`
     );
 });
@@ -178,6 +189,30 @@ popupImg.addEventListener("mouseout",eo=>{
     }, 2000);
 });
 /* End Move Work Image */ 
+/* Start work filter */
+let workFilter = getAllElement(".pagination li");
+const existingWorks= works.querySelectorAll(".work");
+workFilter.forEach(filter => {
+    filter.addEventListener("click", () =>{
+        workFilter.forEach(item => {
+            item.classList.remove("active");
+        });
+        filter.classList.add("active");
+        const category = filter.dataset.category;
+        console.log(existingWorks);
+        existingWorks.forEach(work => {
+            if(category=="all")
+                work.style.display="block";
+            else if(work.dataset.work != category)
+                work.style.display="none"; 
+            else
+                work.style.display="block";
+
+        });
+    });
+});
+console.log(workFilter);
+/* /End work filter */
 /* Start Contact*/
 const nvMsg=getElement(".nvMessage a");
 const formContact=getElement("form");
